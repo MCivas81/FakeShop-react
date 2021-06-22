@@ -1,0 +1,21 @@
+.activities__wrapper {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  list-style-type: none;
+  margin-top: 140px;
+}
+
+.activities__wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .activities__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+  }
+}

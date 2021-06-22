@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
+import Home from './pages/Home';
 
 function App() {
   // API data logic
@@ -18,7 +20,17 @@ function App() {
 
   console.log(activities);
 
-  return <div className='App'></div>;
+  return (
+    <Router>
+      <div className='App'>
+        <Switch>
+          <Route exact path='/'>
+            <Home activities={activities} />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
 }
 
 export default App;

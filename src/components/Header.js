@@ -6,7 +6,9 @@ function Header({ onWishlistClick }) {
   return (
     <header className='header__container'>
       <Link to='/' className='header__text'>
-        JAG<span>AA</span>D TEST
+        <h2>
+          JAG<span>AA</span>D
+        </h2>
       </Link>
       <div className='header__links'>
         <button onClick={onWishlistClick} type='button' className='header__btn'>

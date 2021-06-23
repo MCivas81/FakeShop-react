@@ -12,20 +12,21 @@
 
 .header__text {
   color: #ffffff;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
+  letter-spacing: 3px;
   font-weight: 600;
   padding-left: 15px;
   text-decoration: none;
+}
+
+.header__text span {
+  color: #1a88c2;
 }
 
 .header__links {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.header__text span:last-child {
-  color: #1a88c2;
 }
 
 .header__btn {
@@ -51,7 +52,7 @@
 
 @media (min-width: 768px) {
   .header__text {
-    font-size: 2rem;
+    font-size: 1.5rem;
     padding-left: 30px;
   }
 

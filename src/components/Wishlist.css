@@ -1,0 +1,11 @@
+.wishlist__container {
+  list-style-type: none;
+  overflow-y: scroll;
+}
+
+.wishlist__empty {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-top: 40px;
+}

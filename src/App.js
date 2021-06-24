@@ -4,6 +4,7 @@ import './App.css';
 import Home from './pages/Home';
 import Header from './components/Header';
 import ModalSidebar from './components/ModalSidebar';
+import Wishlist from './components/Wishlist';
 
 function App() {
   // API data logic
@@ -39,14 +40,44 @@ function App() {
     setIsModalOpen(false);
   };
 
+  // Wishlist logic
+  const [wishlist, setWishlist] = useState([]);
+
+  const isInWishlist = (activity) => {
+    return activity != null && wishlist.find((act) => act.uuid === activity.uuid) != null;
+  };
+
+  const addToWishlist = (activity) => {
+    return setWishlist([...wishlist, activity]);
+  };
+
+  const removeFromWishlist = (activityId) => {
+    setWishlist(wishlist.filter((activity) => activity.uuid !== activityId));
+  };
+
+  const clearWishlist = () => {
+    setWishlist([]);
+  };
+
   return (
     <Router>
       <div className='App'>
-        <Header onWishlistClick={() => setIsModalOpen(true)} />
-        <ModalSidebar isModalOpen={isModalOpen} closeModal={closeModal}></ModalSidebar>
+        <Header wishlist={wishlist} onWishlistClick={() => setIsModalOpen(true)} />
+        <ModalSidebar
+          isModalOpen={isModalOpen}
+          closeModal={closeModal}
+          wishlist={wishlist}
+          clearWishlist={clearWishlist}>
+          <Wishlist wishlist={wishlist} removeFromWishlist={removeFromWishlist} />
+        </ModalSidebar>
         <Switch>
           <Route exact path='/'>
-            <Home activities={activities} />
+            <Home
+              activities={activities}
+              isInWishlist={isInWishlist}
+              addToWishlist={addToWishlist}
+              removeFromWishlist={removeFromWishlist}
+            />
           </Route>
         </Switch>
       </div>

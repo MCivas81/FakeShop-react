@@ -1,5 +1,6 @@
 import React from 'react';
 import './Wishlist.css';
+import ListItem from './ListItem';
 
 function Wishlist({ wishlist, removeFromWishlist }) {
   return (
@@ -8,8 +9,8 @@ function Wishlist({ wishlist, removeFromWishlist }) {
       {wishlist.length > 0 &&
         wishlist.map((item) => {
           return (
-            <li>
-              <div removeFromWishlist={removeFromWishlist}>{item.title}</div>
+            <li key={item.uuid}>
+              <ListItem item={item} removeFromWishlist={removeFromWishlist} />
             </li>
           );
         })}

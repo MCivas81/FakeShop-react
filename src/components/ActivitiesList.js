@@ -9,10 +9,9 @@ function ActivitiesList({ activities, isInWishlist, addToWishlist, removeFromWis
       <div className='activities__wrapper'>
         {activities.map((activity) => {
           return (
-            <li>
+            <li key={activity.uuid}>
               {
                 <ActivityCard
-                  key={activity.uuid}
                   activity={activity}
                   addToWishlist={addToWishlist}
                   isInWishlist={isInWishlist}

@@ -1,7 +1,15 @@
 import React from 'react';
 import './ActivityCard.css';
 
-function ActivityCard({ activity }) {
+function ActivityCard({ activity, addToWishlist, isInWishlist, removeFromWishlist }) {
+  const toggleWishlist = () => {
+    if (isInWishlist(activity)) {
+      removeFromWishlist(activity.uuid);
+    } else {
+      addToWishlist(activity);
+    }
+  };
+
   return (
     activity && (
       <div className='card__container'>
@@ -15,8 +23,12 @@ function ActivityCard({ activity }) {
             Add to
             <i className='fas fa-shopping-cart'></i>
           </button>
-          <div className='card__icon'>
-            <i className='far fa-star'></i>
+          <div onClick={toggleWishlist} className='card__icon'>
+            {isInWishlist(activity) ? (
+              <i className='fas fa-star'></i>
+            ) : (
+              <i className='far fa-star'></i>
+            )}
           </div>
           <span className='card__price'>
             <small>Price: </small>

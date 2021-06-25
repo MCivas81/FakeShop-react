@@ -3,7 +3,15 @@ import ActivityCard from './ActivityCard';
 
 import './ActivitiesList.css';
 
-function ActivitiesList({ activities, isInWishlist, addToWishlist, removeFromWishlist }) {
+function ActivitiesList({
+  activities,
+  isInWishlist,
+  addToWishlist,
+  removeFromWishlist,
+  addToCart,
+  removeFromCart,
+  isInCart,
+}) {
   return (
     <div className='activities__container'>
       <div className='activities__wrapper'>
@@ -16,6 +24,9 @@ function ActivitiesList({ activities, isInWishlist, addToWishlist, removeFromWis
                   addToWishlist={addToWishlist}
                   isInWishlist={isInWishlist}
                   removeFromWishlist={removeFromWishlist}
+                  addToCart={addToCart}
+                  removeFromCart={removeFromCart}
+                  isInCart={isInCart}
                 />
               }
             </li>

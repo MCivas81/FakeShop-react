@@ -4,9 +4,14 @@
   align-items: center;
   color: #ffffff;
   margin-left: auto;
-  padding-right: 35px;
+  padding-right: 30px;
   font-size: 0.75rem;
   font-weight: 500;
+}
+
+.headercart__price {
+  width: 75px;
+  text-align: right;
 }
 
 .headercart__icon {
@@ -23,7 +28,7 @@
 .headercart__qty {
   position: absolute;
   top: 12px;
-  right: 15px;
+  right: 10px;
   border-radius: 50%;
   background-color: #ba0000;
   width: 25px;
@@ -41,7 +46,9 @@
     padding-right: 50px;
     font-size: 0.85rem;
   }
-
+  .headercart__price {
+    width: 90px;
+  }
   .headercart__qty {
     right: 30px;
   }

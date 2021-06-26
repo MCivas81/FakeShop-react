@@ -1,5 +1,6 @@
 import React from 'react';
 import ActivitiesList from '../components/ActivitiesList';
+import Pagination from '../components/Pagination';
 
 function Home({
   activities,
@@ -9,6 +10,13 @@ function Home({
   addToCart,
   removeFromCart,
   isInCart,
+  activitiesPerPage,
+  totalActivities,
+  paginate,
+  currentPage,
+  goToPreviousPage,
+  goToNextPage,
+  pageLimit,
 }) {
   return (
     <div>
@@ -20,6 +28,15 @@ function Home({
         addToCart={addToCart}
         removeFromCart={removeFromCart}
         isInCart={isInCart}
+      />
+      <Pagination
+        activitiesPerPage={activitiesPerPage}
+        totalActivities={totalActivities}
+        paginate={paginate}
+        currentPage={currentPage}
+        goToPreviousPage={goToPreviousPage}
+        goToNextPage={goToNextPage}
+        pageLimit={pageLimit}
       />
     </div>
   );

@@ -12,7 +12,7 @@ function App() {
   const [activities, setActivities] = useState([]);
 
   useEffect(() => {
-    fetch('https://api.musement.com/api/v3/venues/164/activities?limit=60&offset=0')
+    fetch('https://api.musement.com/api/v3/venues/164/activities?limit=72&offset=0')
       .then((response) => response.json())
       .then((data) => {
         setActivities(data);
@@ -82,6 +82,21 @@ function App() {
     );
   }
 
+  // Get current activities
+  const [currentPage, setCurrentPage] = useState(1);
+  const [activitiesPerPage] = useState(6);
+
+  const indexOfLastActivity = currentPage * activitiesPerPage;
+  const indexOfFirstActivity = indexOfLastActivity - activitiesPerPage;
+  const currentActivities = activities.slice(indexOfFirstActivity, indexOfLastActivity);
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const goToPreviousPage = () => setCurrentPage((pageNumber) => pageNumber - 1);
+  const goToNextPage = () => setCurrentPage((pageNumber) => pageNumber + 1);
+
+  const [pageLimit] = useState(4);
+
   return (
     <Router>
       <div className='App'>
@@ -101,13 +116,20 @@ function App() {
         <Switch>
           <Route exact path='/'>
             <Home
-              activities={activities}
+              activities={currentActivities}
               isInWishlist={isInWishlist}
               addToWishlist={addToWishlist}
               removeFromWishlist={removeFromWishlist}
               addToCart={addToCart}
               removeFromCart={removeFromCart}
               isInCart={isInCart}
+              activitiesPerPage={activitiesPerPage}
+              totalActivities={activities.length}
+              paginate={paginate}
+              currentPage={currentPage}
+              goToPreviousPage={goToPreviousPage}
+              goToNextPage={goToNextPage}
+              pageLimit={pageLimit}
             />
           </Route>
           <Route path='/cart'>

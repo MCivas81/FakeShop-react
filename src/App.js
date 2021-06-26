@@ -22,8 +22,6 @@ function App() {
       });
   }, []);
 
-  console.log(activities);
-
   // Modal logic
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -64,7 +62,7 @@ function App() {
   const [cart, setCart] = useState([]);
 
   const cartTotal = cart.reduce(
-    (total, activity) => total + activity.original_retail_price.value * activity.quantity,
+    (total, activity) => total + activity.retail_price.value * activity.quantity,
     0
   );
   function isInCart(activity) {

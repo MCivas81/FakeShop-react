@@ -33,7 +33,7 @@
 }
 
 .card__description {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: #6a6a6a;
 }
 
@@ -88,10 +88,24 @@
 }
 
 .card__price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0 15px;
+}
+
+.card__retailprice {
   font-size: 1rem;
   font-weight: 500;
   color: #dc143c;
-  padding: 0 15px;
+}
+
+.card__originalprice {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding-bottom: 3px;
+  color: #6a6a6a;
+  text-decoration: line-through;
 }
 
 .card__price small {
@@ -100,8 +114,8 @@
 
 @media (min-width: 768px) {
   .card__container {
-    width: 335px;
-    min-height: 440px;
+    width: 340px;
+    min-height: 445px;
   }
 
   .card__img {
@@ -113,7 +127,7 @@
   }
 
   .card__description {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 
   .card__icon {
@@ -128,7 +142,11 @@
     font-size: 0.85rem;
   }
 
-  .card__price {
+  .card__retailprice {
     font-size: 1.1rem;
+  }
+
+  .card__originalprice {
+    font-size: 0.8rem;
   }
 }

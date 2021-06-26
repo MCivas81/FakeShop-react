@@ -9,7 +9,7 @@ function ListItem({ item, removeFromWishlist }) {
         <p>{item.title}</p>
       </div>
       <div className='listitem__details'>
-        <span className='listitem__price'>{item.original_retail_price.formatted_value}</span>
+        <span className='listitem__price'>{item.retail_price.formatted_value}</span>
         <div className='listitem__icon'>
           <i
             onClick={() => removeFromWishlist(item.uuid)}

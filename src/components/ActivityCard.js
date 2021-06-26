@@ -53,10 +53,20 @@ function ActivityCard({
               <i className='far fa-star'></i>
             )}
           </div>
-          <span className='card__price'>
-            <small>Price: </small>
-            {activity.original_retail_price.formatted_value}
-          </span>
+          {activity.discount > 0 ? (
+            <div className='card__price'>
+              <span className='card__originalprice'>
+                {activity.original_retail_price.formatted_value}
+              </span>
+              <small>Price: </small>
+              <span className='card__retailprice'>{activity.retail_price.formatted_value}</span>
+            </div>
+          ) : (
+            <div className='card__price'>
+              <small>Price: </small>
+              <span className='card__retailprice'>{activity.retail_price.formatted_value}</span>
+            </div>
+          )}
         </div>
       </div>
     )

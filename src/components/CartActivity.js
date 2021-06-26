@@ -17,7 +17,7 @@ function CartActivity({ activity, removeFromCart, setProductQuantity }) {
           <span>{activity.quantity}</span>
           <button onClick={increment}>+</button>
         </div>
-        <p className='cartactivity__price'>€ {activity.original_retail_price.value.toFixed(2)}</p>
+        <span className='cartactivity__price'>{activity.retail_price.formatted_value}</span>
         <button className='cartactivity__remove' onClick={remove}>
           Remove
         </button>

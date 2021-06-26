@@ -1,6 +1,7 @@
 import React from 'react';
 import './Cart.css';
 import CartActivity from '../components/CartActivity';
+import { formatPrice } from '../services/utils';
 
 function Cart({ activitiesInCart, totalPrice, removeFromCart, setProductQuantity }) {
   return (
@@ -19,7 +20,7 @@ function Cart({ activitiesInCart, totalPrice, removeFromCart, setProductQuantity
           <p className='cart__empty'>The cart is empty</p>
         )}
       </div>
-      <footer className='cart__footer'>Total: € {totalPrice.toFixed(2)}</footer>
+      <footer className='cart__footer'>Total: {formatPrice(totalPrice)}</footer>
     </div>
   );
 }

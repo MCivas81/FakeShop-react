@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './HeaderCart.css';
+import { formatPrice } from '../services/utils';
 
 function HeaderCart({ cartSize, cartTotal }) {
   return (
     <div className='headercart__container'>
-      {!!cartSize && <span className='headercart__price'>€ {cartTotal.toFixed(2)}</span>}
+      {!!cartSize && <span className='headercart__price'>{formatPrice(cartTotal)}</span>}
       <Link to='/cart' className='headercart__icon'>
         <i className='fas fa-shopping-cart'></i>
       </Link>

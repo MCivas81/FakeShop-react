@@ -10,17 +10,21 @@ import Wishlist from './components/Wishlist';
 function App() {
   // API data logic
   const [activities, setActivities] = useState([]);
+  console.log(activities);
+  const [currentOffset, setCurrentOffset] = useState(0);
+  const [totalActivities] = useState(72);
+  const [pageLimit] = useState(6);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    fetch('https://api.musement.com/api/v3/venues/164/activities?limit=72&offset=0')
+    fetch(`https://api.musement.com/api/v3/venues/164/activities?limit=6&offset=${currentOffset}`)
       .then((response) => response.json())
-      .then((data) => {
-        setActivities(data);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  }, []);
+      .then((data) => setActivities(data))
+      .catch((error) => console.log(error.message));
+  }, [currentOffset]);
+
+  console.log('pagina corrente', currentPage);
+  console.log('offset corrente', currentOffset);
 
   // Modal logic
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -80,20 +84,19 @@ function App() {
     );
   }
 
-  // Get current activities
-  const [currentPage, setCurrentPage] = useState(1);
-  const [activitiesPerPage] = useState(6);
-
-  const indexOfLastActivity = currentPage * activitiesPerPage;
-  const indexOfFirstActivity = indexOfLastActivity - activitiesPerPage;
-  const currentActivities = activities.slice(indexOfFirstActivity, indexOfLastActivity);
-
   // Change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  const goToPreviousPage = () => setCurrentPage((pageNumber) => pageNumber - 1);
-  const goToNextPage = () => setCurrentPage((pageNumber) => pageNumber + 1);
-
-  const [pageLimit] = useState(4);
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    setCurrentOffset((pageNumber - 1) * pageLimit);
+  };
+  const goToPreviousPage = () => {
+    setCurrentPage((pageNumber) => pageNumber - 1);
+    setCurrentOffset((prevState) => prevState - pageLimit);
+  };
+  const goToNextPage = () => {
+    setCurrentPage((pageNumber) => pageNumber + 1);
+    setCurrentOffset((prevState) => prevState + pageLimit);
+  };
 
   return (
     <Router>
@@ -114,20 +117,19 @@ function App() {
         <Switch>
           <Route exact path='/'>
             <Home
-              activities={currentActivities}
+              activities={activities}
               isInWishlist={isInWishlist}
               addToWishlist={addToWishlist}
               removeFromWishlist={removeFromWishlist}
               addToCart={addToCart}
               removeFromCart={removeFromCart}
               isInCart={isInCart}
-              activitiesPerPage={activitiesPerPage}
-              totalActivities={activities.length}
+              pageLimit={pageLimit}
+              totalActivities={totalActivities}
               paginate={paginate}
               currentPage={currentPage}
               goToPreviousPage={goToPreviousPage}
               goToNextPage={goToNextPage}
-              pageLimit={pageLimit}
             />
           </Route>
           <Route path='/cart'>

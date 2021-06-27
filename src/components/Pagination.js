@@ -1,26 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Pagination.css';
 
 function Pagination({
-  activitiesPerPage,
+  pageLimit,
   totalActivities,
   paginate,
   currentPage,
   goToPreviousPage,
   goToNextPage,
-  pageLimit,
 }) {
-  const pageNumbers = [];
-
-  console.log(pageNumbers);
-
-  for (let i = 1; i <= Math.ceil(totalActivities / activitiesPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  // Page grouping
+  const [pageGroupLimit] = useState(4);
 
   const getPaginationGroup = () => {
-    let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
-    return new Array(pageLimit).fill().map((_, idx) => start + idx + 1);
+    let start = Math.floor((currentPage - 1) / pageGroupLimit) * pageGroupLimit;
+    return new Array(pageGroupLimit).fill().map((_, idx) => start + idx + 1);
   };
 
   return (
@@ -31,18 +25,18 @@ function Pagination({
           className={`page__prev ${currentPage === 1 && 'disabled'}`}>
           prev
         </button>
-        {getPaginationGroup().map((number, index) => (
+        {getPaginationGroup().map((pageNumber, index) => (
           <li key={index} className='page__activities'>
             <button
-              onClick={() => paginate(number)}
-              className={`page__number ${currentPage === number && 'active'}`}>
-              {number}
+              onClick={() => paginate(pageNumber)}
+              className={`page__number ${currentPage === pageNumber && 'active'}`}>
+              {pageNumber}
             </button>
           </li>
         ))}
         <button
           onClick={goToNextPage}
-          className={`page__next ${currentPage === pageNumbers.length && 'disabled'}`}>
+          className={`page__next ${currentPage === totalActivities / pageLimit && 'disabled'}`}>
           next
         </button>
       </ul>

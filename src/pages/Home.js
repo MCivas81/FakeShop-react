@@ -10,13 +10,12 @@ function Home({
   addToCart,
   removeFromCart,
   isInCart,
-  activitiesPerPage,
+  pageLimit,
   totalActivities,
   paginate,
   currentPage,
   goToPreviousPage,
   goToNextPage,
-  pageLimit,
 }) {
   return (
     <div>
@@ -30,13 +29,12 @@ function Home({
         isInCart={isInCart}
       />
       <Pagination
-        activitiesPerPage={activitiesPerPage}
+        pageLimit={pageLimit}
         totalActivities={totalActivities}
         paginate={paginate}
         currentPage={currentPage}
         goToPreviousPage={goToPreviousPage}
         goToNextPage={goToNextPage}
-        pageLimit={pageLimit}
       />
     </div>
   );

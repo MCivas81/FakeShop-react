@@ -6,10 +6,15 @@ import Cart from './pages/Cart';
 import Header from './components/Header';
 import ModalSidebar from './components/ModalSidebar';
 import Wishlist from './components/Wishlist';
+import Loader from './components/Loader/Loader';
+import ErrorBanner from './components/ErrorBanner/ErrorBanner';
 
 function App() {
   // API data logic
   const [activities, setActivities] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const [retry, setRetry] = useState(false);
   console.log(activities);
   const [currentOffset, setCurrentOffset] = useState(0);
   const [totalActivities] = useState(72);
@@ -17,11 +22,19 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
+    setIsLoading(true);
+    setHasError(false);
     fetch(`https://api.musement.com/api/v3/venues/164/activities?limit=6&offset=${currentOffset}`)
       .then((response) => response.json())
-      .then((data) => setActivities(data))
-      .catch((error) => console.log(error.message));
-  }, [currentOffset]);
+      .then((data) => {
+        setActivities(data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setHasError(true);
+        console.error(`API call response error! ${error.message}`);
+      });
+  }, [currentOffset, retry]);
 
   console.log('pagina corrente', currentPage);
   console.log('offset corrente', currentOffset);
@@ -115,31 +128,38 @@ function App() {
           <Wishlist wishlist={wishlist} removeFromWishlist={removeFromWishlist} />
         </ModalSidebar>
         <Switch>
-          <Route exact path='/'>
-            <Home
-              activities={activities}
-              isInWishlist={isInWishlist}
-              addToWishlist={addToWishlist}
-              removeFromWishlist={removeFromWishlist}
-              addToCart={addToCart}
-              removeFromCart={removeFromCart}
-              isInCart={isInCart}
-              pageLimit={pageLimit}
-              totalActivities={totalActivities}
-              paginate={paginate}
-              currentPage={currentPage}
-              goToPreviousPage={goToPreviousPage}
-              goToNextPage={goToNextPage}
-            />
-          </Route>
-          <Route path='/cart'>
-            <Cart
-              activitiesInCart={cart}
-              totalPrice={cartTotal}
-              removeFromCart={removeFromCart}
-              setProductQuantity={setProductQuantity}
-            />
-          </Route>
+          {hasError && <ErrorBanner retry={() => setRetry(!retry)} />}
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <>
+              <Route exact path='/'>
+                <Home
+                  activities={activities}
+                  isInWishlist={isInWishlist}
+                  addToWishlist={addToWishlist}
+                  removeFromWishlist={removeFromWishlist}
+                  addToCart={addToCart}
+                  removeFromCart={removeFromCart}
+                  isInCart={isInCart}
+                  pageLimit={pageLimit}
+                  totalActivities={totalActivities}
+                  paginate={paginate}
+                  currentPage={currentPage}
+                  goToPreviousPage={goToPreviousPage}
+                  goToNextPage={goToNextPage}
+                />
+              </Route>
+              <Route path='/cart'>
+                <Cart
+                  activitiesInCart={cart}
+                  totalPrice={cartTotal}
+                  removeFromCart={removeFromCart}
+                  setProductQuantity={setProductQuantity}
+                />
+              </Route>
+            </>
+          )}
         </Switch>
       </div>
     </Router>

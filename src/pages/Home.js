@@ -18,7 +18,7 @@ function Home({
   goToNextPage,
 }) {
   return (
-    <div>
+    <main>
       <ActivitiesList
         activities={activities}
         isInWishlist={isInWishlist}
@@ -36,7 +36,7 @@ function Home({
         goToPreviousPage={goToPreviousPage}
         goToNextPage={goToNextPage}
       />
-    </div>
+    </main>
   );
 }
 

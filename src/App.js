@@ -103,12 +103,12 @@ function App() {
     setCurrentOffset((pageNumber - 1) * pageLimit);
   };
   const goToPreviousPage = () => {
-    setCurrentPage((pageNumber) => pageNumber - 1);
-    setCurrentOffset((prevState) => prevState - pageLimit);
+    setCurrentPage(currentPage - 1);
+    setCurrentOffset(currentOffset - pageLimit);
   };
   const goToNextPage = () => {
-    setCurrentPage((pageNumber) => pageNumber + 1);
-    setCurrentOffset((prevState) => prevState + pageLimit);
+    setCurrentPage(currentPage + 1);
+    setCurrentOffset(currentOffset + pageLimit);
   };
 
   return (

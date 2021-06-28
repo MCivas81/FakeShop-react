@@ -1,7 +1,7 @@
 import React from 'react';
-import './Cart.css';
 import CartActivity from '../components/CartActivity';
 import { formatPrice } from '../services/utils';
+import './Cart.css';
 
 function Cart({ activitiesInCart, totalPrice, removeFromCart, setProductQuantity }) {
   return (

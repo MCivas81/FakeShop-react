@@ -1,6 +1,6 @@
 import React from 'react';
-import './Wishlist.css';
 import ListItem from './ListItem';
+import './Wishlist.css';
 
 function Wishlist({ wishlist, removeFromWishlist }) {
   return (

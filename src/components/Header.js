@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Header.css';
 import HeaderCart from './HeaderCart';
+import './Header.css';
 
 function Header({ wishlist, onWishlistClick, cartSize, cartTotal }) {
   return (

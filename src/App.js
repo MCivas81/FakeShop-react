@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import './App.css';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
 import Header from './components/Header';
@@ -9,13 +8,14 @@ import Wishlist from './components/Wishlist';
 import Loader from './components/Loader/Loader';
 import ErrorBanner from './components/ErrorBanner/ErrorBanner';
 
+import './App.css';
+
 function App() {
   // API data logic
   const [activities, setActivities] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [retry, setRetry] = useState(false);
-  console.log(activities);
   const [currentOffset, setCurrentOffset] = useState(0);
   const [totalActivities] = useState(72);
   const [pageLimit] = useState(6);
@@ -35,9 +35,6 @@ function App() {
         console.error(`API call response error! ${error.message}`);
       });
   }, [currentOffset, retry]);
-
-  console.log('pagina corrente', currentPage);
-  console.log('offset corrente', currentOffset);
 
   // Modal logic
   const [isModalOpen, setIsModalOpen] = useState(false);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './HeaderCart.css';
 import { formatPrice } from '../services/utils';
+import './HeaderCart.css';
 
 function HeaderCart({ cartSize, cartTotal }) {
   return (

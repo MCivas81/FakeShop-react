@@ -1,6 +1,5 @@
 import React from 'react';
 import ActivityCard from './ActivityCard';
-
 import './ActivitiesList.css';
 
 function ActivitiesList({

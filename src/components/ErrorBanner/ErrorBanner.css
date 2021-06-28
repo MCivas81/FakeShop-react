@@ -1,4 +1,4 @@
-.ErrorBanner {
+.errorbanner {
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -11,24 +11,24 @@
   align-items: center;
 }
 
-.ErrorBanner button {
+.errorbanner button {
   outline: 0;
   border: 0;
   cursor: pointer;
 }
 
-.ErrorBanner__message {
+.errorbanner__message {
   flex-grow: 1;
   font-size: 1rem;
 }
 
-.ErrorBanner__retry {
+.errorbanner__retry {
   margin-right: 20px;
   border-radius: 2px;
   padding: 3px 10px;
 }
 
-.ErrorBanner__close {
+.errorbanner__close {
   border-radius: 50%;
   aspect-ratio: 1 / 1;
 }

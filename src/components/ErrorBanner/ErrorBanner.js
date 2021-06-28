@@ -6,12 +6,12 @@ function ErrorBanner({ retry }) {
 
   return (
     isErrorOpen && (
-      <div className='ErrorBanner'>
-        <span className='ErrorBanner__message'>API call response error!</span>
-        <button type='button' className='ErrorBanner__retry' onClick={retry}>
+      <div className='errorbanner'>
+        <span className='errorbanner__message'>API call response error!</span>
+        <button type='button' className='errorbanner__retry' onClick={retry}>
           Retry
         </button>
-        <button type='button' className='ErrorBanner__close' onClick={() => setIsErrorOpen(false)}>
+        <button type='button' className='errorbanner__close' onClick={() => setIsErrorOpen(false)}>
           X
         </button>
       </div>

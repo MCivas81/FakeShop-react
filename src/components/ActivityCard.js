@@ -1,5 +1,6 @@
 import React from 'react';
 import './ActivityCard.css';
+import { truncate } from '../services/utils';
 
 function ActivityCard({
   activity,
@@ -32,7 +33,7 @@ function ActivityCard({
         <img className='card__img' src={activity.cover_image_url} alt={activity.title} />
         <div className='card__text'>
           <h2 className='card__title'>{activity.title}</h2>
-          <p className='card__description'>{activity.description}</p>
+          <p className='card__description'>{truncate(activity.description, 200)}</p>
         </div>
         <div className='card__details'>
           {isInCart(activity) ? (

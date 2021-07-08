@@ -8,7 +8,7 @@ function Header({ wishlist, onWishlistClick, cartSize, cartTotal }) {
     <header className='header__container'>
       <Link to='/' className='header__text'>
         <h2>
-          JAG<span>AA</span>D
+          Fake<span>Shop</span>
         </h2>
       </Link>
       <div className='header__links'>
